@@ -1,0 +1,248 @@
+/* src/paginas/CollectionDetailPage/CollectionDetailPage.module.css */
+
+.detailPage {
+  background-color: var(--cor-fundo);
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.mainContent {
+  padding: 8rem 3rem 3rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between; /* Empurra o título e o botão para cantos opostos */
+  align-items: center;            /* Alinha tudo verticalmente no centro */
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #222;
+}
+
+.pageHeader h1 { 
+  font-size: 2.5rem; 
+  margin-bottom: 0.5rem; 
+  text-transform: capitalize; 
+}
+
+.pageHeader p { 
+  font-size: 1.1rem; 
+  color: #b3b3badec1; 
+}
+
+.actions { 
+  display: flex; 
+  gap: 1rem; 
+}
+
+.primaryButton, .secondaryButton { 
+  padding: 0.8rem 1.8rem; 
+  border: none; 
+  border-radius: 5px; 
+  font-size: 0.9rem; 
+  font-weight: 500; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+}
+
+.primaryButton { 
+  background-color: var(--cor-primaria); 
+  color: #fff; 
+}
+
+.secondaryButton { 
+  background-color: rgba(40, 40, 40, 0.8); 
+  color: #F5F5F5; 
+  border: 1px solid rgba(100, 100, 100, 0.5); 
+}
+
+.printsGrid { 
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 1.5rem; 
+}
+
+.mobileView {
+  display: none;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.backButton:hover {
+  color: white;
+}
+
+/* --- ESTILOS PARA SELEÇÃO DE CARD --- */
+.cardWrapper {
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.selectionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  z-index: 2;
+}
+
+.checkIcon {
+  width: 50px;
+  height: 50px;
+  fill: rgba(255, 255, 255, 0.9);
+  transform: scale(0.5);
+  transition: transform 0.3s ease;
+}
+
+.cardWrapper.selected {
+  box-shadow: 0 0 0 3px var(--cor-primaria);
+}
+
+.cardWrapper.selected .selectionOverlay {
+  background-color: rgba(229, 9, 20, 0.6);
+  opacity: 1;
+}
+
+.cardWrapper.selected .checkIcon {
+  transform: scale(1);
+}
+
+.cardWrapper.selected .desktopView,
+.cardWrapper.selected .mobileView {
+  transform: scale(0.95);
+  opacity: 0.8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* --- ESTILOS PARA O CONTEÚDO DENTRO DO MODAL --- */
+.modalImage {
+  width: 100%;
+  max-width: 400px; /* Largura máxima para o container da imagem */
+  height: 450px; /* ALTURA FIXA para padronizar o tamanho */
+  
+  object-fit: contain; /* Garante que a imagem inteira apareça, sem cortar */
+  background-color: #141414; /* Fundo para preencher o espaço vazio (letterboxing) */
+  
+  border-radius: 8px;
+  margin: 0 auto 1.5rem; /* Centraliza a imagem e adiciona margem inferior */
+  display: block; /* Garante que a margem auto funcione */
+}
+
+.modalContent h3 {
+  font-size: 1.8rem;
+  margin: 0 0 0.25rem;
+}
+
+.modalContent p {
+  font-size: 1rem;
+  color: #b3b3b3;
+  margin: 0 0 1.5rem;
+}
+
+.downloadButton {
+  background-color: var(--cor-primaria);
+  color: white;
+  padding: 0.9rem 2.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.downloadButton:hover {
+  background-color: #c40812;
+}
+
+
+/* === Media Queries para Responsividade === */
+@media (max-width: 1400px) { 
+  .printsGrid { grid-template-columns: repeat(4, 1fr); } 
+}
+
+@media (max-width: 1100px) { 
+  .printsGrid { grid-template-columns: repeat(3, 1fr); } 
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 8rem 1.5rem 3rem;
+  }
+
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  
+  .pageHeader h1 { font-size: 2rem; }
+  .pageHeader p { font-size: 1rem; }
+
+  .actions {
+    width: 100%;
+  }
+  .actions > button {
+    flex-grow: 1;
+  }
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+  /* A margem não é mais necessária aqui */
+}
+  
+  .printsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .desktopView {
+    display: none;
+  }
+
+  .mobileView {
+    display: block;
+  }
+}

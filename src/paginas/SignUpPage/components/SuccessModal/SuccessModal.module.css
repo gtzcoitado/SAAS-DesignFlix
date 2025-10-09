@@ -1,0 +1,47 @@
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 2rem 2rem;
+  max-width: 400px;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  color: var(--cor-primaria);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.message {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #b3b3b3;
+  margin: 0 0 2rem 0;
+}
+
+.actionButton {
+  background-color: var(--cor-primaria);
+  color: white;
+  padding: 0.9rem 2.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.actionButton:hover {
+  background-color: #c40812;
+  transform: translateY(-2px);
+}

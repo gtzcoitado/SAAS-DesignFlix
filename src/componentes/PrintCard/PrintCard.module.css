@@ -1,0 +1,43 @@
+.card {
+  min-width: 280px;
+  max-width: 280px;
+  background-color: #242424; /* O background do card ainda pode ser útil */
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex; /* Garante que o img preencha o espaço */
+  flex-direction: column;
+  /* NOVO: Define a altura do card igual à altura da imagem para não sobrar espaço */
+  height: 280px; 
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%; /* A imagem agora preenche 100% da altura do card */
+  object-fit: cover;
+  display: block;
+  background-color: #141414;
+}
+
+/* Removemos as classes .cardInfo e .cardCategory */
+/* .cardInfo {
+  padding: 1rem;
+  background-color: #242424;
+  text-align: center; 
+}
+
+.cardCategory {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #b3b3b3;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */

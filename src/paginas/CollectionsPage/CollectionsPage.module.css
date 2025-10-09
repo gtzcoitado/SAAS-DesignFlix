@@ -1,0 +1,74 @@
+/* src/paginas/CollectionsPage/CollectionsPage.module.css */
+
+.collectionsPage {
+  background-color: var(--cor-fundo);
+  min-height: 100vh;
+}
+
+.mainContent {
+  padding: 8rem 3rem 3rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #222;
+}
+
+.pageHeader h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pageHeader p {
+  font-size: 1.1rem;
+  color: #b3b3b3;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+
+
+/* ========================================================= */
+/* === AJUSTES DE RESPONSIVIDADE (VERSÃO LAPIDADA) === */
+/* ========================================================= */
+
+@media (max-width: 1400px) {
+  .categoryGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .categoryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    /* CORREÇÃO 1: Aumentamos o padding no topo para o título não ser cortado pela navbar */
+    padding: 8rem 1.5rem 3rem; /* Era 6rem */
+  }
+
+  .pageHeader h1 {
+    font-size: 2rem;
+  }
+
+  .pageHeader p {
+    font-size: 1rem;
+  }
+
+  .categoryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    
+    /* CORREÇÃO 2: Definimos explicitamente o espaçamento entre colunas e linhas */
+    column-gap: 1rem;
+    row-gap: 1.5rem; /* Adiciona o "espacinho" vertical que faltava */
+  }
+}

@@ -1,0 +1,86 @@
+/* src/paginas/HomePage/componentes/ContentCarousel/ContentCarousel.module.css */
+
+.carouselContainer {
+  /* MUDANÇA AQUI: Removemos completamente o padding */
+  padding: 0; 
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  /* ADICIONADO: Colocamos o padding diretamente no título para ele ficar alinhado */
+  padding: 0 3rem;
+}
+
+.carouselWrapper {
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* ADICIONADO: O padding agora fica aqui, dentro da área de scroll */
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* ... (o resto do arquivo, incluindo botões e media query, permanece o mesmo) ... */
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carouselWrapper:hover .navButton {
+  opacity: 1;
+}
+
+.navButton.left {
+  /* MUDANÇA AQUI: Ajustamos a posição do botão para a nova realidade sem padding */
+  left: 1rem; 
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.navButton.right {
+  /* MUDANÇA AQUI: Ajustamos a posição do botão */
+  right: 1rem;
+}
+
+.navButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+  .navButton {
+    display: none;
+  }
+
+  /* Ajustamos o padding para telas menores também */
+  .title, .carousel {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

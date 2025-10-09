@@ -1,0 +1,60 @@
+/* Estilos para a transição de fade entre as páginas */
+.app-container {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.app-container.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.app-container.fade-out {
+  opacity: 1;
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Camada de sobreposição global com gradiente */
+.app-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 9;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Esconde o overlay quando o corpo da página tem a classe 'no-overlay' */
+body.no-overlay .app-overlay {
+  opacity: 0;
+}
+
+/* Camada de sobreposição global com gradiente (AINDA USADO) */
+.app-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 9;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Esconde o overlay quando o corpo da página tem a classe 'no-overlay' */
+body.no-overlay .app-overlay {
+  opacity: 0;
+}

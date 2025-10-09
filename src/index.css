@@ -1,0 +1,42 @@
+:root {
+  --cor-primaria: #e50914; /* Vermelho Netflix */
+  --cor-fundo: #141414;    /* Preto Netflix */
+  --cor-texto: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+
+  /* ========================================================= */
+  /* === CORREÇÃO DEFINITIVA PARA PREVENIR ROLAGEM LATERAL === */
+  /* ========================================================= */
+  overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+/* Código para esconder a barra de rolagem visualmente */
+/* Para Firefox */
+html, body {
+  scrollbar-width: none;
+}
+
+/* Para Chrome, Safari, Edge e outros navegadores WebKit */
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+  display: none;
+  width: 0px; /* Força a largura a ser zero */
+  background: transparent; /* Fundo transparente */
+}

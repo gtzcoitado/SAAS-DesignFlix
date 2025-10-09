@@ -1,0 +1,184 @@
+.profileCard {
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  padding: 2rem;
+  border: 1px solid #333;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #222;
+  padding-bottom: 1.5rem;
+}
+
+.userIconContainer {
+  width: 80px;
+  height: 80px;
+  background-color: #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userIcon {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.userDetails h3, .userDetails p {
+  margin: 0;
+}
+
+.userName {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+.userEmail {
+  font-size: 1rem;
+  color: #b3b3b3;
+}
+
+.accountInfo h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--cor-texto);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.accountInfo p {
+  margin: 0 0 1rem 0;
+  color: #b3b3b3;
+}
+
+.changePasswordButton {
+  background-color: transparent;
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.changePasswordButton:hover {
+  background-color: var(--cor-primaria);
+  color: white;
+}/* src/paginas/ProfilePage/componentes/ProfileInfo/ProfileInfo.module.css */
+
+.profileCard {
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  padding: 2rem;
+  border: 1px solid #333;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #222;
+  padding-bottom: 1.5rem;
+}
+
+.userIconContainer {
+  width: 80px;
+  height: 80px;
+  background-color: #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userIcon {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.userDetails h3, .userDetails p {
+  margin: 0;
+}
+
+.userName {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+.userEmail {
+  font-size: 1rem;
+  color: #b3b3b3;
+}
+
+.accountInfo h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--cor-texto);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.accountInfo p {
+  margin: 0 0 1rem 0;
+  color: #b3b3b3;
+}
+
+.changePasswordButton {
+  background-color: transparent;
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.changePasswordButton:hover {
+  background-color: var(--cor-primaria);
+  color: white;
+}
+
+
+/* =============================================================== */
+/* === NOVO: Ajustes de responsividade para o Card de Informações === */
+/* =============================================================== */
+
+@media (max-width: 768px) {
+  .profileCard {
+    padding: 1.5rem; /* Menos padding interno, consistente com os outros cards */
+  }
+
+  .userInfo {
+    /* Opcional: Para telas bem pequenas, centralizar tudo fica ótimo */
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .userIconContainer {
+    width: 70px;
+    height: 70px;
+  }
+
+  .userName {
+    font-size: 1.5rem; /* Fonte do nome um pouco menor */
+  }
+
+  .userEmail {
+    font-size: 0.9rem; /* Fonte do email um pouco menor */
+  }
+
+  .accountInfo {
+    text-align: center; /* Centraliza o conteúdo de "Account Details" */
+  }
+}

@@ -1,0 +1,236 @@
+.pricingPage {
+  background-color: var(--cor-fundo);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.billingPage {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.billingPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+
+.mainContent {
+  padding: 8rem 3rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pageHeader h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.pageHeader p {
+  font-size: 1.2rem;
+  color: #b3b3b3;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch; 
+}
+
+/* A animação agora escala e se move */
+@keyframes float {
+  0% { transform: translateY(0) scale(1.08); }
+  50% { transform: translateY(-3px) scale(1.08); }
+  100% { transform: translateY(0) scale(1.08); }
+}
+
+.pricingCard {
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+/* REMOVIDO: A lógica de hover foi substituída pelo estado 'active' do React */
+/* .pricingCard:hover { ... } */
+
+/* A classe .active agora controla TODO o destaque (brilho, borda, animação) */
+.pricingCard.active {
+  border-color: var(--cor-primaria);
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+  animation: float 2.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  z-index: 5;
+}
+
+.cardHeader {
+  text-align: center;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cardHeader h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+.pricePeriod {
+  font-size: 1rem;
+  color: #b3b3b3;
+  font-weight: 400;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  flex-grow: 1; 
+}
+
+.featuresList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.featuresList li span {
+  flex-grow: 1;
+}
+
+.vipBadge {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  background: linear-gradient(45deg, #ffc107, #ffeb3b);
+  color: #1f1f1f;
+  padding: 0.6rem 1.3rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  transform: rotate(15deg);
+}
+
+.selectButton {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primaryButton {
+  background-color: var(--cor-primaria);
+  color: #fff;
+}
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: #F5F5F5;
+  border: 1px solid #555;
+}
+.secondaryButton:hover {
+  background-color: #333;
+  border-color: #777;
+}
+
+@media (max-width: 992px) {
+  .pricingGrid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* No mobile, o card ativo não terá mais a animação de escala/flutuação */
+  .pricingCard.active {
+    transform: none;
+    animation: none;
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+  }
+
+  .vipBadge {
+    transform: rotate(0deg);
+    top: -10px;
+    right: 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 6rem 1.5rem 3rem; 
+  }
+
+  .pageHeader {
+    margin-bottom: 3rem;
+  }
+
+  .pageHeader h1 {
+    font-size: 2.2rem;
+  }
+
+  .pageHeader p {
+    font-size: 1rem;
+  }
+
+  .pricingGrid {
+    max-width: 100%;
+  }
+
+  .pricingCard {
+    padding: 2rem;
+  }
+
+  .cardHeader h3 {
+    font-size: 1.5rem;
+  }
+
+  .price {
+    font-size: 2.2rem;
+  }
+}

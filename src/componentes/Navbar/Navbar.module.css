@@ -1,0 +1,255 @@
+/* src/componentes/Navbar/Navbar.module.css */
+
+.navbarWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  transition: background-color 0.4s ease-in-out;
+}
+.navbarWrapper.menuActive {
+  background-color: #101010;
+}
+
+.navbar {
+  padding: 0rem 5rem;
+  box-sizing: border-box; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 11;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.logo {
+  transition: transform 0.4s ease-in-out;
+}
+.logo img {
+  height: 150px;
+  display: block;
+}
+.logoCenter {
+  transform: translateX(calc(50vw - 50%));
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navLinks a {
+  color: #F5F5F5;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.navLinks a:hover {
+  color: #b3b3b3;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.desktopOnly { display: flex; align-items: center; gap: 1.5rem; }
+.mobileOnly { display: none; }
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+.navButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.searchInputContainer {
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: width 0.4s ease-in-out, opacity 0.3s ease-in-out;
+  margin-right: -40px;
+}
+.searchInputContainer.visible {
+  width: 250px;
+  opacity: 1;
+  visibility: visible;
+  margin-right: 0;
+}
+
+.searchInput {
+  width: 100%;
+  background-color: #141414;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  color: var(--cor-texto);
+  outline: none;
+}
+
+.profileLink a {
+  color: #F5F5F5;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.profileLink a:hover {
+  color: #b3b3b3;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #101010;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  z-index: 10;
+  
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.mobileMenu.menuOpen {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobileMenu a {
+  color: #c7c7c7;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.mobileMenu a:hover {
+  background-color: #1f1f1f;
+  color: #ffffff;
+}
+.logoutLinkMobile {
+  color: var(--cor-primaria);
+  font-weight: 700;
+}
+
+/* ======================================= */
+/* === AJUSTES DE RESPONSIVIDADE (NOVO) === */
+/* ======================================= */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0rem 1rem;
+    height: 100px;
+  }
+  
+  .logo img {
+    height: 120px;
+  }
+
+  .navLinks, .desktopOnly, .desktopSearchIcon {
+    display: none;
+  }
+  
+  .mobileOnly {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logoCenter {
+    transform: translateX(calc(50vw - 50% - 1rem));
+  }
+
+  /* --- REFORMULAÇÃO COMPLETA DA BUSCA MOBILE --- */
+
+  /* Remove o comportamento de overlay antigo e feio */
+  .searchInputContainer.visible {
+    animation: none;
+  }
+
+  /* Esconde o logo e os botões quando a busca está ativa */
+  .navbar.searching .leftSection,
+  .navbar.searching .mobileOnly {
+    display: none;
+  }
+
+  /* Faz o container da busca ocupar todo o espaço disponível */
+  .navbar.searching .rightSection,
+  .navbar.searching .searchWrapper {
+    flex-grow: 1;
+    height: 100%;
+  }
+
+  /* Ajusta o campo de input para o novo visual */
+  .navbar.searching .searchInputContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    visibility: visible;
+    opacity: 1;
+    margin: 0;
+  }
+
+  .navbar.searching .searchInput {
+    height: 48px;
+    font-size: 1rem;
+    border-radius: 24px; /* Deixa o input arredondado */
+    padding: 0 1.5rem;
+    border-color: #777;
+  }
+}
+
+.pageOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  
+  /* Z-index deve ser menor que a navbar (z-index: 10) 
+     mas maior que o conteúdo da página, para ficar no meio */
+  z-index: 9;
+
+  /* Animação de fade-in para suavizar a aparição */
+  animation: fadeInOverlay 0.4s ease-in-out;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

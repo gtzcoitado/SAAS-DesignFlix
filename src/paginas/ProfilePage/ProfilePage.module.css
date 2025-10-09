@@ -1,0 +1,116 @@
+/* src/paginas/ProfilePage/ProfilePage.module.css */
+
+.profilePage {
+    background-color: var(--cor-fundo);
+    min-height: 100vh;
+}
+
+.mainContent {
+    padding: 8rem 3rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profileHeader {
+    text-align: left;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #222;
+}
+
+.profileHeader h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.profileHeader p {
+    font-size: 1.1rem;
+    color: #b3b3b3;
+}
+
+.profileGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1.5fr;
+    gap: 1.5rem;
+    align-items: start;
+    min-height: 60vh;
+}
+
+.subscriptionCard, 
+.metricsCard {
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    padding: 2rem;
+    border: 1px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.subscriptionCard h2, 
+.metricsCard h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #222;
+    padding-bottom: 0.5rem;
+}
+
+.subscriptionCard p, 
+.metricsCard p {
+    margin: 0.5rem 0;
+    color: #b3b3b3;
+    flex-grow: 1;
+}
+
+.actionButton {
+    align-self: flex-start;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* ... (outros estilos de botão permanecem os mesmos) ... */
+.cancelButton { background-color: transparent; color: #f5f5f5; border: 1px solid #555; margin-top: 1rem; }
+.cancelButton:hover { background-color: #333; border-color: #777; }
+.historyButton { background-color: transparent; color: var(--cor-primaria); border: 1px solid var(--cor-primaria); margin-top: 1rem; }
+.historyButton:hover { background-color: var(--cor-primaria); color: white; }
+
+
+/* ========================================================= */
+/* === NOVO: Ajustes de responsividade para a página de Perfil === */
+/* ========================================================= */
+
+@media (max-width: 768px) {
+    .mainContent {
+        /* Reduz o padding para uma aparência mais limpa no mobile */
+        padding: 6rem 1.5rem 3rem;
+    }
+
+    .profileHeader h1 {
+        font-size: 2rem; /* Diminui o título principal */
+    }
+
+    .profileHeader p {
+        font-size: 1rem; /* Diminui o parágrafo de descrição */
+    }
+
+    .profileGrid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto; /* Deixa as linhas com altura automática */
+    }
+
+    .profileCard {
+        grid-row: auto;
+    }
+
+    .subscriptionCard, .metricsCard {
+        padding: 1.5rem; /* Um pouco menos de padding interno nos cards */
+    }
+}

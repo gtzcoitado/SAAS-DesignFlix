@@ -1,0 +1,129 @@
+.leftPanel {
+  flex: 3;
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 3rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.summaryContentWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+}
+
+.backToPlans {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.backButton:hover {
+  color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoImage {
+  height: 100px;
+}
+
+.logo span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.smallTitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #b3b3b3;
+  margin-bottom: 0.5rem;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.totalPrice {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.perMonth {
+  font-size: 1rem;
+  color: #b3b3b3;
+}
+
+.divider {
+  height: 1px;
+  background-color: #333;
+  margin: 1.5rem 0;
+}
+
+.lineItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.itemDescription {
+  font-size: 1rem;
+  color: #b3b3b3;
+  margin: 0;
+}
+
+.itemPrice {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #b3b3b3;
+  margin: 0;
+}
+
+.total {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+}
+
+.totalText, .totalPriceText {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* ======================================= */
+/* === AJUSTES DE RESPONSIVIDADE (NOVO) === */
+/* ======================================= */
+@media (max-width: 768px) {
+  .leftPanel {
+    /* Ajusta o padding para telas menores */
+    padding: 4rem 1.5rem 2rem;
+    justify-content: flex-start;
+    flex: 1; /* Reseta o flex para um comportamento mais natural */
+  }
+
+  .logoImage {
+    height: 80px; /* Logo um pouco menor */
+  }
+}

@@ -1,0 +1,57 @@
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2rem; /* Aumenta o padding interno para mais espaço */
+}
+
+/* Novo estilo para o título do modal */
+.modalContent h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--cor-texto);
+}
+
+/* Estilo para a mensagem de texto */
+.modalContent p {
+  font-size: 1.1rem;
+  color: #b3b3b3;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilo robusto para o botão de login */
+.loginButton {
+  background-color: var(--cor-primaria);
+  color: white;
+  padding: 0.9rem 2.5rem; /* Ajuste o padding para um visual mais equilibrado */
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sutil sombra para dar profundidade */
+}
+
+.loginButton:hover {
+  background-color: #c40812;
+  transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Media query para telas menores, garantindo a responsividade */
+@media (max-width: 500px) {
+  .modalContent {
+    padding: 2rem 1rem;
+  }
+
+  .modalContent h3 {
+    font-size: 1.6rem;
+  }
+
+  .modalContent p {
+    font-size: 1rem;
+  }
+}

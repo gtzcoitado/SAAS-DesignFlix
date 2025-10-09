@@ -1,0 +1,156 @@
+.rightPanel {
+  flex: 2;
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rightPanel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(229, 9, 20, 0.123), rgba(229, 9, 20, 0.301));
+  z-index: 1;
+}
+
+.paymentForm {
+  background-color: rgba(255, 255, 255, 0.15); 
+  border-radius: 40px;
+  padding: 3rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+
+  margin: -10rem auto 0 0rem;
+}
+
+.paymentForm h1 {
+  font-size: 2rem;
+  color: white; 
+  margin-bottom: 0.5rem;
+}
+
+.paymentForm p {
+  color: #dcdcdc; 
+  margin-bottom: 2rem;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  background-color: rgba(255, 255, 255, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.inputField::placeholder {
+  color: #b3b3b3;
+}
+
+.expiryCvv {
+  display: grid;
+  grid-template-columns: 15.5rem 5rem;
+  gap: 3rem;
+  margin-bottom: 1rem;
+}
+
+.currencyWrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.currencySelect {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.currencySelect::-ms-expand {
+  display: none;
+}
+
+.payButton {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-top: 0.5rem;
+  
+  width: calc(100% + 2rem);
+  margin-left: -0rem;
+}
+
+.payButton:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.payButton:disabled {
+  background-color: #b3b3b3;
+  cursor: not-allowed;
+}
+
+/* ======================================= */
+/* === AJUSTES DE RESPONSIVIDADE (NOVO) === */
+/* ======================================= */
+@media (max-width: 768px) {
+  .rightPanel {
+    padding: 2rem 1.5rem 4rem; /* Menos padding */
+    flex: 1; /* Reseta o flex */
+    justify-content: flex-start; /* Alinha no topo */
+  }
+
+  .paymentForm {
+    /* CORREÇÃO PRINCIPAL: Remove a margem negativa */
+    margin: 0;
+    padding: 2rem;
+    max-width: 100%; /* Permite que o form ocupe a largura toda */
+    border-radius: 20px;
+  }
+
+  .expiryCvv {
+    /* Faz os campos de data e CVV ficarem um em cima do outro */
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .payButton {
+    /* Garante que o botão ocupe 100% da largura do form */
+    width: 100%;
+    margin-left: 0;
+  }
+}

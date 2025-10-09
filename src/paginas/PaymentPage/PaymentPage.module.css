@@ -1,0 +1,18 @@
+.paymentPage {
+  min-height: 100vh;
+  display: flex;
+  /* A linha 'flex-direction: column;' foi REMOVIDA daqui */
+}
+
+.splitScreen {
+  display: flex;
+  width: 100%; /* Garante que o container ocupe toda a largura */
+}
+
+@media (max-width: 768px) {
+  .splitScreen {
+    /* Esta regra agora funciona corretamente, aplicando a coluna SÓ no mobile */
+    flex-direction: column;
+    height: auto;
+  }
+}

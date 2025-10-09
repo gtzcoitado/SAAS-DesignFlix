@@ -1,0 +1,8 @@
+/* Adicione este código ao arquivo */
+.homePage {
+  /* Esta propriedade corta qualquer conteúdo que transborde horizontalmente.
+    É como usar uma tesoura para remover as sobras nas laterais da página.
+    'clip' é uma versão mais moderna e performática do 'hidden'.
+  */
+  overflow-x: clip;
+}

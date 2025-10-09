@@ -1,0 +1,179 @@
+/* src/paginas/LoginPage/LoginPage.module.css */
+
+.loginPage {
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem 3rem;
+}
+
+.loginContainer {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  position: relative;
+  z-index: 2;
+  padding: 0rem 0 5rem 0;
+}
+
+.loginBox {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 4rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 450px;
+  min-height: 550px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box; /* Garante que o padding não afete a largura total */
+}
+
+.loginBox h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--cor-texto);
+}
+
+.loginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inputField {
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--cor-texto);
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.inputField:focus {
+  border-color: #fff;
+  background-color: #454545;
+}
+
+.loginButton {
+  background-color: var(--cor-primaria);
+  color: #fff;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.loginButton:hover {
+  background-color: #c40812;
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #b3b3b3;
+  margin-top: 0.5rem;
+}
+
+/* ... (outros estilos que já estavam corretos) ... */
+
+.signupInfo {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.signupText {
+  color: #8c8c8c;
+}
+
+.signupText a {
+  color: var(--cor-texto);
+  font-weight: 500;
+}
+
+.signupText a:hover {
+  text-decoration: underline;
+}
+
+.recaptchaText {
+  font-size: 0.8rem;
+  color: #8c8c8c;
+  margin-top: 1rem;
+  line-height: 1.4;
+}
+
+.backButton {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+
+/* ========================================================= */
+/* === NOVO: Ajustes de responsividade para o formulário === */
+/* ========================================================= */
+
+@media (max-width: 768px) {
+  .loginContainer {
+    /* Adiciona o respiro lateral para não colar nas bordas */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: flex-start; /* Alinha no topo em telas menores */
+    padding-top: 4rem;
+  }
+
+  .loginBox {
+    /* Reduz o padding interno no mobile para dar mais espaço ao conteúdo */
+    padding: 2.5rem 1.5rem;
+    min-height: auto; /* Permite que a altura se ajuste ao conteúdo */
+  }
+  
+  .backButton {
+    /* Reposiciona o botão para não ficar estranho com o novo padding */
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
