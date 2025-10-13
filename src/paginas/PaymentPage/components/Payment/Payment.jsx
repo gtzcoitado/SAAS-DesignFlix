@@ -1,51 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { supabase } from '../../../../supabaseClient';
 import styles from './Payment.module.css';
 import payImage from '@/assets/pay.png';
 
 const Payment = ({ plan }) => {
   const navigate = useNavigate();
-  const stripe = useStripe();
-  const elements = useElements();
-  
-  const [email, setEmail] = useState('');
-  const [processing, setProcessing] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [subscriptionId, setSubscriptionId] = useState(null);
 
-  const cardElementOptions = {
-    style: {
-      base: {
-        color: "#ffffff",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#aab7c4",
-        },
-      },
-      invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a",
-      },
-    },
+  // Configuração inicial do PayPal
+  const initialOptions = {
+    "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
+    currency: "USD",
+    intent: "subscription",
+    vault: true,
   };
 
-  const handlePayment = async (e) => {
-    e.preventDefault();
-    if (!stripe || !elements) {
-      // Stripe.js ainda não carregou.
-      return;
-    }
-    setProcessing(true);
+  const createSubscription = async () => {
+    setLoading(true);
     setError(null);
 
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error("User not logged in");
 
-      // Chama a Edge Function para criar a intenção de pagamento
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const response = await fetch(`${supabaseUrl}/functions/v1/create-payment-intent`, {
+      const response = await fetch(`${supabaseUrl}/functions/v1/create-subscription`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,57 +37,76 @@ const Payment = ({ plan }) => {
         body: JSON.stringify({ plan }),
       });
 
-      const { clientSecret, error: intentError } = await response.json();
-      if (intentError) throw new Error(intentError);
-
-      // Finaliza o pagamento no frontend com o secret do backend
-      const { paymentIntent, error: paymentError } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: { email: email }
-        }
-      });
-
-      if (paymentError) throw new Error(paymentError.message);
-
-      // O webhook do Stripe irá tratar da atualização do perfil do utilizador
-      if (paymentIntent.status === 'succeeded') {
-        alert("Payment successful! Your subscription is now active.");
-        navigate('/dashboard');
-      }
+      const { subscriptionId: subId, error: subError } = await response.json();
+      
+      if (subError) throw new Error(subError);
+      
+      setSubscriptionId(subId);
+      return subId;
 
     } catch (err) {
-      setError(`Payment failed: ${err.message}`);
+      setError(`Failed to create subscription: ${err.message}`);
+      throw err;
     } finally {
-      setProcessing(false);
+      setLoading(false);
+    }
+  };
+
+  const onApprove = async (data) => {
+    try {
+      // Aqui você pode fazer uma verificação adicional se quiser
+      console.log('Subscription approved:', data.subscriptionID);
+      
+      alert("Payment successful! Your subscription is now active.");
+      navigate('/dashboard');
+    } catch (err) {
+      setError(`Approval failed: ${err.message}`);
     }
   };
 
   return (
     <div className={styles.rightPanel} style={{ backgroundImage: `url(${payImage})` }}>
-      <form className={styles.paymentForm} onSubmit={handlePayment}>
+      <div className={styles.paymentForm}>
         <h1>Payment</h1>
-        <p>Complete your payment using your credit card.</p>
+        <p>Complete your subscription using PayPal.</p>
         
-        <input 
-          type="email" 
-          placeholder="Email" 
-          className={styles.inputField} 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required 
-        />
-        
-        <div className={styles.cardElementContainer}>
-          <CardElement options={cardElementOptions} />
+        <div className={styles.planInfo}>
+          <h3>{plan.name} Plan</h3>
+          <p className={styles.price}>US$ {plan.price.toFixed(2)}</p>
+          <p className={styles.period}>per {plan.period}</p>
         </div>
-        
+
         {error && <p className={styles.errorMessage}>{error}</p>}
 
-        <button type="submit" className={styles.payButton} disabled={processing || !stripe}>
-          {processing ? 'Processing...' : `Pay US$ ${plan.price.toFixed(2)}`}
-        </button>
-      </form>
+        <div className={styles.paypalButtonContainer}>
+          <PayPalScriptProvider options={initialOptions}>
+            <PayPalButtons
+              style={{
+                layout: "vertical",
+                color: "gold",
+                shape: "rect",
+                label: "subscribe"
+              }}
+              createSubscription={async (data, actions) => {
+                const subId = await createSubscription();
+                return subId;
+              }}
+              onApprove={onApprove}
+              onError={(err) => {
+                console.error('PayPal Error:', err);
+                setError('An error occurred with PayPal. Please try again.');
+              }}
+              disabled={loading}
+            />
+          </PayPalScriptProvider>
+        </div>
+
+        {loading && (
+          <div className={styles.loadingOverlay}>
+            <p>Processing your subscription...</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
