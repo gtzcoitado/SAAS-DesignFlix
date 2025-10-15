@@ -2,9 +2,10 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// 1. IMPORTAMOS O NOVO COMPONENTE AQUI
+// Componentes
 import ScrollToTop from './componentes/ScrollToTop/ScrollToTop';
 
+// Páginas
 import HomePage from './paginas/HomePage/HomePage';
 import LoginPage from './paginas/LoginPage/LoginPage';
 import SignUpPage from './paginas/SignUpPage/SignUpPage';
@@ -14,6 +15,7 @@ import CollectionDetailPage from './paginas/CollectionDetailPage/CollectionDetai
 import PricingPage from './paginas/PricingPage/PricingPage';
 import ProfilePage from './paginas/ProfilePage/ProfilePage';
 import PaymentPage from './paginas/PaymentPage/PaymentPage';
+import PaymentSuccess from './paginas/PaymentSuccess/PaymentSuccess'; // CORRIGIDO: caminho atualizado
 
 import './App.css';
 import { useNavigation } from './context/NavigationContext';
@@ -60,7 +62,6 @@ function App() {
     <div className="app-container">
       {showOverlay && <div className="app-overlay"></div>}
       
-      {/* 2. ADICIONAMOS O COMPONENTE AQUI */}
       <ScrollToTop />
       
       <AnimatePresence mode="wait">
@@ -74,6 +75,8 @@ function App() {
           <Route path="/pricing" element={<PageWrapper><PricingPage /></PageWrapper>} />
           <Route path="/profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
           <Route path="/payment" element={<PageWrapper><PaymentPage /></PageWrapper>} />
+          {/* NOVA ROTA: Página de sucesso do pagamento */}
+          <Route path="/payment-success" element={<PageWrapper><PaymentSuccess /></PageWrapper>} />
         </Routes>
       </AnimatePresence>
     </div>
